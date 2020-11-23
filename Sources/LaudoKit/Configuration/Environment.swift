@@ -33,4 +33,18 @@ public enum Environment: String {
 
         return environment
     }()
+    
+    
+    public static var appName: String {
+        return AppInfo.CFBundleName
+    }
+    
+    public static var appVersion: String {
+        return AppInfo.CFBundleShortVersionString
+    }
+    
+    public static var appBuild: String {
+        return AppInfo.CFBundleVersion
+    }
+    
 }

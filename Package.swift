@@ -13,6 +13,7 @@ let package = Package(
             targets: ["LaudoKit"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/Swinject/Swinject", .upToNextMajor(from: "2.7.1"))
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],
@@ -21,7 +22,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "LaudoKit",
-            dependencies: []),
+            dependencies: ["Swinject"]),
         .testTarget(
             name: "LaudoKitTests",
             dependencies: ["LaudoKit"]),
