@@ -15,7 +15,7 @@ public enum Environment: String {
     case production
     
     // MARK: - Current Environment
-    static let current: Environment = {
+    public static let current: Environment = {
         // Read Value From Info.plist
         guard let value = Bundle.main.infoDictionary?["CONFIGURATION"] as? String else {
             // Define Environment based on debug release
