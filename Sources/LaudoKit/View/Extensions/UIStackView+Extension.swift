@@ -27,4 +27,16 @@ public extension UIStackView {
         self.spacing = spacing
         return self
     }
+    
+    @discardableResult
+    func removeAllArrangedSubviews() -> [UIView] {
+        return arrangedSubviews.reduce([UIView]()) { $0 + [removeArrangedSubViewProperly($1)] }
+    }
+
+    private func removeArrangedSubViewProperly(_ view: UIView) -> UIView {
+        removeArrangedSubview(view)
+        NSLayoutConstraint.deactivate(view.constraints)
+        view.removeFromSuperview()
+        return view
+    }
 }
