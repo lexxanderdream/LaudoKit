@@ -28,6 +28,18 @@ public struct LPickerPresenter<Item: Equatable & CustomStringConvertible> {
     /// A closure to be run when the user taps item
     var handler: (Item) -> Void
     
+    // MARK: - Initializer
+    public init(title: String?, items: [Item], selected: Item?, rejectTitle: String, itemTextAlignment: CATextLayerAlignmentMode, handler: @escaping (Item) -> Void) {
+      
+        self.title = title
+        self.items = items
+        self.selected = selected
+        self.rejectTitle = rejectTitle
+        self.itemTextAlignment = itemTextAlignment
+        self.handler = handler
+    }
+    
+    // MARK: - Methods
     public func present(in viewController: UIViewController, sender: UIBarButtonItem? = nil) {
         
         // Initializer alert controller
