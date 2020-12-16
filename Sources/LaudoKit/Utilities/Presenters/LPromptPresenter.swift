@@ -25,6 +25,9 @@ public class LPromptPresenter {
     /// Cancel action title
     var cancelTitle: String
     
+    /// Allow empty input
+    public var allowEmptyText: Bool = false
+    
     /// Handler
     var handler: (String) -> Void
     
@@ -65,7 +68,7 @@ public class LPromptPresenter {
             self.acceptAction = nil
             self.handler(textField.text ?? "")
         }
-        acceptAction.isEnabled = false
+        acceptAction.isEnabled = allowEmptyText
         self.acceptAction = acceptAction
         alertController.addAction(acceptAction)
         
@@ -81,6 +84,8 @@ public class LPromptPresenter {
     }
     
     @objc func alerTextChanged(_ sender: UITextField) {
+        if allowEmptyText { return }
+        
         if let action = acceptAction {
             action.isEnabled = (sender.text == "") ? false : true
         }
