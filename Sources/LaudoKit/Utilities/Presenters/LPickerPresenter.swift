@@ -42,11 +42,18 @@ public struct LPickerPresenter<Item: Equatable & CustomStringConvertible> {
     // MARK: - Methods
     public func present(in viewController: UIViewController, sender: UIBarButtonItem? = nil) {
         
+        var alertStyle = UIAlertController.Style.actionSheet
+        
+        if (UIDevice.current.userInterfaceIdiom == .pad && sender == nil) {
+            alertStyle = UIAlertController.Style.alert
+        }
+        
+        
         // Initializer alert controller
         let alertController = UIAlertController(
             title: title,
             message: nil,
-            preferredStyle: .actionSheet
+            preferredStyle: alertStyle
         )
         
         // Add accept action
