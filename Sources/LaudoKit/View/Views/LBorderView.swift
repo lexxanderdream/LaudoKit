@@ -43,7 +43,7 @@ open class LBorderView: LView {
             ])
         case .left, .right:
             NSLayoutConstraint.activate([
-                self.heightAnchor.constraint(equalToConstant: width),
+                self.widthAnchor.constraint(equalToConstant: width),
                 self.topAnchor.constraint(equalTo: view.topAnchor),
                 self.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
