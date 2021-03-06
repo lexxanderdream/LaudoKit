@@ -19,7 +19,7 @@ public extension UITableViewCell {
     func separator(_ type: SeparatorType) -> Self {
         let left: CGFloat = {
             switch type {
-            case .none: return bounds.size.width
+            case .none: return 0
             case .insetted(let value): return value
             case .full: return 0
             case .both(let value): return value
@@ -28,6 +28,7 @@ public extension UITableViewCell {
         
         let right: CGFloat = {
             switch type {
+            case .none: return .greatestFiniteMagnitude
             case .both(let value): return value
             default: return 0
             }
