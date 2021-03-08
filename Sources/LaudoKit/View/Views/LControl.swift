@@ -10,7 +10,7 @@ import UIKit
 open class LControl: UIControl {
     
     // MARK: - Properties
-    private var touchHandler: ((LButton) -> Void)?
+    private var touchHandler: ((LControl) -> Void)?
     
     // MARK: - Initialization
     @available(*, unavailable)
@@ -39,13 +39,13 @@ open class LControl: UIControl {
     }
     
     // MARK: - Handlers
-    @objc func touchAction(_ sender: LButton) {
+    @objc func touchAction(_ sender: LControl) {
         self.touchHandler?(sender)
     }
     
     // MARK: - Methods
     @discardableResult
-    public func onTouch(_ handler: @escaping ((LButton) -> Void)) -> Self {
+    public func onTouch(_ handler: @escaping ((LControl) -> Void)) -> Self {
         self.touchHandler = handler
         return self
     }
