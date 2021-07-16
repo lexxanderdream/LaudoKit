@@ -59,3 +59,21 @@ public extension LConfirmationPresenter {
         self.init(question: question, description: nil, acceptTitle: acceptTitle, rejectTitle: rejectTitle, handler: handler)
     }
 }
+
+public extension LConfirmationPresenter {
+    static func makeAndPresent(in viewController: UIViewController, acceptTitle: String, rejectTitle: String, handler: @escaping (() -> Void)) {
+        
+        let presenter = LConfirmationPresenter(acceptTitle: acceptTitle, rejectTitle: rejectTitle, handler: handler)
+        
+        presenter.present(in: viewController)
+    }
+    
+    static func makeAndPresent(in viewController: UIViewController, question: String, acceptTitle: String, rejectTitle: String, handler: @escaping (() -> Void)) {
+        
+        let presenter = LConfirmationPresenter(question: question, acceptTitle: acceptTitle, rejectTitle: rejectTitle, handler: handler)
+        
+        presenter.present(in: viewController)
+    }
+    
+    
+}
