@@ -28,7 +28,7 @@ open class LCollectionViewCell: UICollectionViewCell, Identifiable {
     }
     
     open func initialize() {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
 }

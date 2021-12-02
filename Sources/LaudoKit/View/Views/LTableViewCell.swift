@@ -22,7 +22,7 @@ open class LTableViewCell: UITableViewCell, Identifiable {
     
     
     open func initialize() {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        
     }
     
     open func configure(with presentable: TableViewCellPresentable) {
