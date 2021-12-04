@@ -47,7 +47,7 @@ open class LView: UIView {
     
     // MARK: - Methods
     @discardableResult
-    public func onTouch(_ handler: @escaping ((LView) -> Void)) -> Self {
+    open func onTouch(_ handler: @escaping ((LView) -> Void)) -> Self {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(touchAction(_:)))
         addGestureRecognizer(tapGesture)
         self.touchHandler = handler
