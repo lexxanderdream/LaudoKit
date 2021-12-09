@@ -33,7 +33,7 @@ public extension UIStackView {
         return arrangedSubviews.reduce([UIView]()) { $0 + [removeArrangedSubViewProperly($1)] }
     }
 
-    private func removeArrangedSubViewProperly(_ view: UIView) -> UIView {
+    func removeArrangedSubViewProperly(_ view: UIView) -> UIView {
         removeArrangedSubview(view)
         NSLayoutConstraint.deactivate(view.constraints)
         view.removeFromSuperview()
