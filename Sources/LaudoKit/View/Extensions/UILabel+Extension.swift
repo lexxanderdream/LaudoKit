@@ -38,8 +38,9 @@ public extension UILabel {
         // Rounded font
         if #available(iOS 13.0, *) {
             let size = self.font.pointSize
+            let weight = self.font.weight
             
-            if let descriptor = UIFont.systemFont(ofSize: size, weight: .heavy).fontDescriptor.withDesign(.rounded) {
+            if let descriptor = UIFont.systemFont(ofSize: size, weight: weight).fontDescriptor.withDesign(.rounded) {
                 let font = UIFont(descriptor: descriptor, size: size)
                 self.font = font
             }
