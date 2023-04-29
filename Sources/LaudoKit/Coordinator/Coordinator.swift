@@ -38,7 +38,7 @@ open class Coordinator: NSObject, UINavigationControllerDelegate, UIAdaptivePres
     
     
     // MARK: - UIAdaptivePresentationControllerDelegate
-    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+    open func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         didFinish?(self)
     }
 
