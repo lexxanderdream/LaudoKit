@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class Coordinator: NSObject, UINavigationControllerDelegate, UIAdaptivePresentationControllerDelegate {
+open class Coordinator: NSObject, UINavigationControllerDelegate {
 
     // MARK: - Properties
 
@@ -38,7 +38,6 @@ open class Coordinator: NSObject, UINavigationControllerDelegate, UIAdaptivePres
     
     
     // MARK: -
-
     public func pushCoordinator(_ coordinator: Coordinator, completion: ((Coordinator) -> Void)? = nil) {
         // Install Handler
         coordinator.didFinish = { [weak self] (coordinator) in
