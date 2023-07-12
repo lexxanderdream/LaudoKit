@@ -42,6 +42,8 @@ public struct LConfirmationPresenter {
         // Add cancel action
         let cancelAction = UIAlertAction(title: rejectTitle, style: .cancel)
         alertController.addAction(cancelAction)
+        
+        return alertController
     }
     
     // MARK: - Methods
