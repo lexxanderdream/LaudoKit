@@ -26,7 +26,7 @@ public class LPromptPresenter {
     var cancelTitle: String
     
     /// Allow empty input
-    public var allowEmptyText: Bool = false
+    var allowEmptyText: Bool = false
     
     /// Handler
     var handler: (String) -> Void
@@ -58,6 +58,7 @@ public class LPromptPresenter {
         // Add Text field
         alertController.addTextField { textField in
             textField.placeholder = self.placeholder
+            textField.autocapitalizationType = .sentences
             textField.text = self.defaultText
             textField.addTarget(self, action: #selector(self.alerTextChanged(_:)), for: .editingChanged)
         }

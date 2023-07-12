@@ -24,10 +24,8 @@ public struct LConfirmationPresenter {
     /// A closure to be run when the user taps accept button
     let handler: () -> Void
     
-    
-    // MARK: - Methods
-    public func present(in viewController: UIViewController) {
-        
+    // MARK: - Helper Methods
+    private func makeAlertController() -> UIAlertController {
         // Initializer alert controller
         let alertController = UIAlertController(
             title: question,
@@ -44,12 +42,35 @@ public struct LConfirmationPresenter {
         // Add cancel action
         let cancelAction = UIAlertAction(title: rejectTitle, style: .cancel)
         alertController.addAction(cancelAction)
+    }
+    
+    // MARK: - Methods
+    public func present(in viewController: UIViewController, barButtonItem: UIBarButtonItem) {
+        
+        // Initialize Alert Controller
+        let alertController = makeAlertController()
+        
+        // Setup PopoverPresentationController
+        alertController.popoverPresentationController?.barButtonItem = barButtonItem
+        
+        // Present Alert Controller
+        viewController.present(alertController, animated: true)
+    }
+    
+    public func present(in viewController: UIViewController, sourceView: UIView, sourceRect: CGRect? = nil) {
+        // Initialize Alert Controller
+        let alertController = makeAlertController()
+        
+        // Setup PopoverPresentationController
+        alertController.popoverPresentationController?.sourceView = sourceView
+        alertController.popoverPresentationController?.sourceView = sourceRect ?? sourceView.bounds
         
         // Present Alert Controller
         viewController.present(alertController, animated: true)
     }
 }
 
+// MARK: - Custom Initialization
 public extension LConfirmationPresenter {
     init(acceptTitle: String, rejectTitle: String, handler: @escaping () -> Void) {
         self.init(question: nil, description: nil, acceptTitle: acceptTitle, rejectTitle: rejectTitle, handler: handler)
@@ -58,22 +79,4 @@ public extension LConfirmationPresenter {
     init(question: String, acceptTitle: String, rejectTitle: String, handler: @escaping () -> Void) {
         self.init(question: question, description: nil, acceptTitle: acceptTitle, rejectTitle: rejectTitle, handler: handler)
     }
-}
-
-public extension LConfirmationPresenter {
-    static func makeAndPresent(in viewController: UIViewController, acceptTitle: String, rejectTitle: String, handler: @escaping (() -> Void)) {
-        
-        let presenter = LConfirmationPresenter(acceptTitle: acceptTitle, rejectTitle: rejectTitle, handler: handler)
-        
-        presenter.present(in: viewController)
-    }
-    
-    static func makeAndPresent(in viewController: UIViewController, question: String, acceptTitle: String, rejectTitle: String, handler: @escaping (() -> Void)) {
-        
-        let presenter = LConfirmationPresenter(question: question, acceptTitle: acceptTitle, rejectTitle: rejectTitle, handler: handler)
-        
-        presenter.present(in: viewController)
-    }
-    
-    
 }
