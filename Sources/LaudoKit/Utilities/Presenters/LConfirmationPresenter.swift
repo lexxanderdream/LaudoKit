@@ -63,7 +63,7 @@ public struct LConfirmationPresenter {
         
         // Setup PopoverPresentationController
         alertController.popoverPresentationController?.sourceView = sourceView
-        alertController.popoverPresentationController?.sourceView = sourceRect ?? sourceView.bounds
+        alertController.popoverPresentationController?.sourceRect = sourceRect ?? sourceView.bounds
         
         // Present Alert Controller
         viewController.present(alertController, animated: true)
