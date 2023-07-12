@@ -26,7 +26,7 @@ public class LPromptPresenter {
     var cancelTitle: String
     
     /// Allow empty input
-    var allowEmptyText: Bool = false
+    public var allowEmptyText: Bool = false
     
     /// Handler
     var handler: (String) -> Void

@@ -12,22 +12,33 @@ public struct LSharePresenter {
     /// Items for sharing
     var items: [Any]
     
-    func present(in viewController: UIViewController, sender: UIBarButtonItem? = nil) {
+    public var excludedActivityTypes: [UIActivity.ActivityType]?
+    
+    // MARK: - Public API
+    func present(in viewController: UIViewController, sender: Any?) {
                     
         // Initialize Share Controller
-        let shareController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        // Setup
+        activityController.excludedActivityTypes = excludedActivityTypes
                     
         // Configure Share Controller
-        shareController.popoverPresentationController?.barButtonItem = sender
-                    
+        if let barButtonItem = sender as? UIBarButtonItem {
+            activityController.popoverPresentationController?.barButtonItem = barButtonItem
+        } else if let sourceView = sender as? UIView {
+            activityController.popoverPresentationController?.sourceView = sourceView
+            activityController.popoverPresentationController?.sourceRect = sourceView.bounds
+        }
+        
         // Present Share Controller
-        viewController.present(shareController, animated: true, completion: nil)
+        viewController.present(activityController, animated: true, completion: nil)
         
     }
 }
 
 public extension LSharePresenter {
-    static func makeAndPresent(items: [Any], in viewController: UIViewController, sender: UIBarButtonItem? = nil) {
+    static func makeAndPresent(items: [Any], in viewController: UIViewController, sender: Any?) {
         let presenter = LSharePresenter(items: items)
         presenter.present(in: viewController, sender: sender)
     }

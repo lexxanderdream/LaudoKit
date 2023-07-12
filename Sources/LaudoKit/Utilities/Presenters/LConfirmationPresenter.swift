@@ -47,25 +47,18 @@ public struct LConfirmationPresenter {
     }
     
     // MARK: - Methods
-    public func present(in viewController: UIViewController, barButtonItem: UIBarButtonItem) {
+    public func present(in viewController: UIViewController, sender: Any?) {
         
         // Initialize Alert Controller
         let alertController = makeAlertController()
         
         // Setup PopoverPresentationController
-        alertController.popoverPresentationController?.barButtonItem = barButtonItem
-        
-        // Present Alert Controller
-        viewController.present(alertController, animated: true)
-    }
-    
-    public func present(in viewController: UIViewController, sourceView: UIView, sourceRect: CGRect? = nil) {
-        // Initialize Alert Controller
-        let alertController = makeAlertController()
-        
-        // Setup PopoverPresentationController
-        alertController.popoverPresentationController?.sourceView = sourceView
-        alertController.popoverPresentationController?.sourceRect = sourceRect ?? sourceView.bounds
+        if let barButtonItem = sender as? UIBarButtonItem {
+            alertController.popoverPresentationController?.barButtonItem = barButtonItem
+        } else if let sourceView = sender as? UIView {
+            alertController.popoverPresentationController?.sourceView = sourceView
+            alertController.popoverPresentationController?.sourceRect = sourceView.bounds
+        }
         
         // Present Alert Controller
         viewController.present(alertController, animated: true)
