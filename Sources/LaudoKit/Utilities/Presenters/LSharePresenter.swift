@@ -10,9 +10,16 @@ import UIKit
 public struct LSharePresenter {
     
     /// Items for sharing
-    var items: [Any]
+    let items: [Any]
     
-    public var excludedActivityTypes: [UIActivity.ActivityType]?
+    /// Activity types to be excluded
+    let excludedActivityTypes: [UIActivity.ActivityType]?
+    
+    // MARK: - Initialization
+    public init(items: [Any], excludedActivityTypes: [UIActivity.ActivityType]? = nil) {
+        self.items = items
+        self.excludedActivityTypes = excludedActivityTypes
+    }
     
     // MARK: - Public API
     func present(in viewController: UIViewController, sender: Any?) {
