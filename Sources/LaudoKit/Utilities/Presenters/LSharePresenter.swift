@@ -22,7 +22,7 @@ public struct LSharePresenter {
     }
     
     // MARK: - Public API
-    func present(in viewController: UIViewController, sender: Any?) {
+    public func present(in viewController: UIViewController, sender: Any?) {
                     
         // Initialize Share Controller
         let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
