@@ -30,7 +30,7 @@ public struct LSharePresenter {
         // Setup
         activityController.excludedActivityTypes = excludedActivityTypes
                     
-        // Configure Share Controller
+        // Configure PopoverPresentationController
         if let barButtonItem = sender as? UIBarButtonItem {
             activityController.popoverPresentationController?.barButtonItem = barButtonItem
         } else if let sourceView = sender as? UIView {

@@ -24,9 +24,10 @@ public struct LConfirmationPresenter {
     /// A closure to be run when the user taps accept button
     let handler: () -> Void
     
-    // MARK: - Helper Methods
-    private func makeAlertController() -> UIAlertController {
-        // Initializer alert controller
+    // MARK: - Methods
+    public func present(in viewController: UIViewController, sender: Any?) {
+        
+        // Initialize Alert Controller
         let alertController = UIAlertController(
             title: question,
             message: description,
@@ -43,16 +44,7 @@ public struct LConfirmationPresenter {
         let cancelAction = UIAlertAction(title: rejectTitle, style: .cancel)
         alertController.addAction(cancelAction)
         
-        return alertController
-    }
-    
-    // MARK: - Methods
-    public func present(in viewController: UIViewController, sender: Any?) {
-        
-        // Initialize Alert Controller
-        let alertController = makeAlertController()
-        
-        // Setup PopoverPresentationController
+        // Configure PopoverPresentationController
         if let barButtonItem = sender as? UIBarButtonItem {
             alertController.popoverPresentationController?.barButtonItem = barButtonItem
         } else if let sourceView = sender as? UIView {

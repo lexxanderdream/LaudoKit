@@ -8,12 +8,26 @@
 
 import UIKit
 
-public struct LPickerPresenter<Item: Equatable & CustomStringConvertible> {
+public protocol LPickerItem: Equatable & CustomStringConvertible {
+    var style: UIAlertAction.Style { get }
+}
+
+public extension LPickerItem {
+    var style: UIAlertAction.Style {
+        return .default
+    }
+}
+
+
+public struct LPickerPresenter<Item: LPickerItem> {
     
     /// Title of radio button list
     var title: String?
     
-    /// Radio button list
+    /// Message of picker
+    public var message: String?
+    
+    /// Picker items list
     var items: [Item]
     
     /// Currently selected item index
@@ -40,7 +54,7 @@ public struct LPickerPresenter<Item: Equatable & CustomStringConvertible> {
     }
     
     // MARK: - Methods
-    public func present(in viewController: UIViewController, sender: UIBarButtonItem? = nil) {
+    public func present(in viewController: UIViewController, sender: Any?) {
         
         var alertStyle = UIAlertController.Style.actionSheet
         
@@ -48,17 +62,16 @@ public struct LPickerPresenter<Item: Equatable & CustomStringConvertible> {
             alertStyle = UIAlertController.Style.alert
         }
         
-        
         // Initializer alert controller
         let alertController = UIAlertController(
             title: title,
-            message: nil,
+            message: message,
             preferredStyle: alertStyle
         )
         
         // Add accept action
         items.forEach { (item) in
-            let itemAction = UIAlertAction(title: String(describing: item), style: .default) { _ in
+            let itemAction = UIAlertAction(title: String(describing: item), style: item.style) { _ in
                 self.handler(item)
             }
             
@@ -76,8 +89,12 @@ public struct LPickerPresenter<Item: Equatable & CustomStringConvertible> {
         let cancelAction = UIAlertAction(title: rejectTitle, style: .cancel)
         alertController.addAction(cancelAction)
         
-        if let popoverController = alertController.popoverPresentationController {
-            popoverController.barButtonItem = sender
+        // Configure PopoverPresentationController
+        if let barButtonItem = sender as? UIBarButtonItem {
+            alertController.popoverPresentationController?.barButtonItem = barButtonItem
+        } else if let sourceView = sender as? UIView {
+            alertController.popoverPresentationController?.sourceView = sourceView
+            alertController.popoverPresentationController?.sourceRect = sourceView.bounds
         }
         
         // Present Alert Controller
