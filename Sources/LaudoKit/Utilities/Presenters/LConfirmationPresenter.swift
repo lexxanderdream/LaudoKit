@@ -38,7 +38,7 @@ public struct LConfirmationPresenter {
         )
         
         // Add accept action
-        let defaultAction = UIAlertAction(title: acceptTitle, style: destructive ?? .destructive : .default) { _ in
+        let defaultAction = UIAlertAction(title: acceptTitle, style: destructive ? .destructive : .default) { _ in
             self.handler()
         }
         alertController.addAction(defaultAction)
