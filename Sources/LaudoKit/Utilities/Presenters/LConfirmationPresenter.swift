@@ -22,7 +22,7 @@ public struct LConfirmationPresenter {
     let rejectTitle: String
     
     /// Whether accept item is destructive
-    var destructive: Bool = true
+    public var destructive: Bool = true
     
     /// A closure to be run when the user taps accept button
     let handler: () -> Void
