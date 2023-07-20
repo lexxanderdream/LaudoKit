@@ -21,6 +21,9 @@ public struct LConfirmationPresenter {
     /// Title of the button to reject the confirmation
     let rejectTitle: String
     
+    /// Whether accept item is destructive
+    var destructive: Bool = true
+    
     /// A closure to be run when the user taps accept button
     let handler: () -> Void
     
@@ -35,7 +38,7 @@ public struct LConfirmationPresenter {
         )
         
         // Add accept action
-        let defaultAction = UIAlertAction(title: acceptTitle, style: .destructive) { _ in
+        let defaultAction = UIAlertAction(title: acceptTitle, style: destructive ?? .destructive : .default) { _ in
             self.handler()
         }
         alertController.addAction(defaultAction)
