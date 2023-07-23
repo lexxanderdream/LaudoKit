@@ -40,8 +40,8 @@ open class LView: UIView {
     
     
     // MARK: - Handlers
-    @objc func touchAction(_ sender: LView) {
-        self.touchHandler?(sender)
+    @objc func touchAction(_ gestureRecognizer: UITapGestureRecognizer) {
+        self.touchHandler?(self)
     }
 
     
